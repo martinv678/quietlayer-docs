@@ -1,0 +1,153 @@
+---
+title: "Audit pack specification"
+---
+
+The QuietLayer audit pack provides durable, inspection-ready evidence that a verification was performed correctly at a specific point in time.
+
+It is designed to support internal reviews, third-party audits, and regulatory inspections by presenting a clear, consistent record of:
+
+- what check was performed,
+- when it was performed,
+- what result was returned, and
+- what evidence was captured at that moment.
+
+The audit pack is intended to be human-readable, verifiable, and defensible.
+
+
+### When an audit pack is generated
+
+An audit pack is generated for each completed verification.
+
+For Right to Work share code checks, this occurs once:
+
+- the share code has been submitted,
+- the result has been successfully retrieved, and
+- the verification outcome has been recorded.
+
+Each audit pack represents a single, point-in-time verification event.
+
+### Artefacts included
+
+Each audit pack contains the following artefacts.
+
+#### 1. Audit report (PDF)
+
+A structured PDF document that summarises the verification.
+
+The report includes:
+
+- Verification type (e.g. Right to Work share code check)
+- Verification outcome (e.g. valid / not valid)
+- Date and time of the check (UTC)
+- Expiry date of the right to work permission, where applicable
+Employer or organisation identifier
+QuietLayer verification reference ID
+
+The PDF is designed to be printable, shareable, and suitable for long-term retention.
+
+#### 2. Visual evidence capture
+
+A visual capture of the result page returned during the verification process.
+
+This is included to provide:
+
+- human-readable confirmation of the result,
+- visible GOV.UK branding and context, and
+- reassurance that the check was performed against the correct service.
+
+The visual evidence reflects what was presented at the time of the check and is not subsequently modified.
+
+#### 3. Verification metadata
+
+Structured metadata associated with the verification, including:
+
+- verification identifiers,
+- timestamps,
+- verification type,
+- outcome status, and
+- internal reference IDs.
+
+This metadata supports traceability and reconciliation between systems.
+
+#### 4. Integrity hashes
+
+Cryptographic hashes (SHA-256) are generated for key artefacts, including:
+
+- the audit report,
+- the visual evidence capture, and
+- the underlying verification record.
+
+These hashes allow consumers of the audit pack to:
+
+- detect accidental corruption,
+- identify unauthorised modification, and
+- confirm artefact integrity over time.
+
+---
+
+### Integrity and immutability model
+
+QuietLayer applies integrity controls at the time the verification is completed.
+
+In practical terms:
+
+- artefacts are generated once per verification,
+- hashes are calculated immediately after generation, and
+- the resulting records are treated as immutable.
+
+QuietLayer does not alter or regenerate audit artefacts after completion.
+If a new check is required, a new verification and audit pack is created.
+
+This ensures that each audit pack represents a faithful snapshot of a specific verification event.
+
+---
+
+### What is intentionally not included
+
+To reduce risk and avoid unverifiable or misleading artefacts, the audit pack does not include:
+
+- Raw HTML or DOM dumps
+- Session cookies or browser state
+- Client-side scripts or assets
+- Reconstructed or replayed pages
+Derived or inferred data not returned by the verification source
+
+Only evidence that can be reasonably reviewed and relied upon is included.
+
+---
+
+### Access and retention
+
+Audit packs are associated with the organisation that performed the verification.
+
+Access is restricted to authorised users and systems.
+Retention policies are defined at the organisational level and can be aligned with internal compliance requirements.
+
+QuietLayer does not repurpose audit pack data for unrelated use.
+
+---
+
+### Compliance and responsibility
+
+The audit pack is designed to support compliant processes, not to replace them.
+
+QuietLayer:
+
+- provides evidence and traceability,
+- aligns with published guidance, and
+- supports audit and inspection workflows.
+
+Final responsibility for compliance decisions remains with the employer or organisation performing the verification.
+
+---
+
+### TLDR;
+
+The QuietLayer audit pack is a first-class compliance artefact.
+
+It is:
+
+- generated automatically,
+- structured for review,
+- protected by integrity controls, and
+- suitable for audits without additional explanation or reconstruction.

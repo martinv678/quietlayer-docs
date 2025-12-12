@@ -1,0 +1,167 @@
+---
+title: 'Passport'
+description: 'Preview changes locally to update your docs'
+---
+
+QuietLayer’s passport OCR validation service extracts and validates passport data from an uploaded document in order to support identity verification workflows.
+
+It is designed to:
+
+- reduce manual data entry,
+- standardise how passport details are captured, and
+- produce auditable evidence of what was extracted and validated at a specific point in time.
+
+Passport OCR validation is not a right-to-work determination on its own. It is a supporting verification step that can be combined with other checks.
+
+---
+
+## When passport OCR is used
+
+Passport OCR validation is typically used when:
+
+- a passport image is provided as part of a verification flow,
+- structured passport data is required for downstream checks, or
+- organisations want consistent, reviewable evidence of what was submitted.
+
+The service operates on a single uploaded document per verification.
+
+---
+
+## Inputs
+
+To perform passport OCR validation, QuietLayer requires:
+
+- An image or scan of a passport document
+- The issuing country (where applicable)
+-The verification context (organisation and verification reference)
+
+Images are processed only for the purpose of extracting and validating passport data.
+
+---
+
+## What QuietLayer does
+
+For each passport OCR validation, QuietLayer performs the following steps:
+
+1. Accepts the uploaded passport image
+2. Extracts machine-readable and visual passport fields using OCR
+3. Validates field structure and formats (e.g. dates, document numbers)
+4. Records the extracted data and validation results
+5. Generates an audit pack for the verification
+
+The focus is on **accurate capture** and traceability, not inference.
+
+---
+
+## Data extracted
+
+Depending on document quality and issuing country, extracted fields may include:
+
+- Full name
+- Date of birth
+- Passport number
+- Issuing country
+- Expiry date
+- Document type
+
+Extracted fields are returned exactly as read and are not corrected or inferred beyond basic format validation.
+
+---
+
+## Validation performed
+
+Passport OCR validation includes:
+
+- Structural validation of passport fields
+- Date validation (e.g. expiry date format and validity)
+- Consistency checks between visual and machine-readable zones where available
+
+QuietLayer does not assert document authenticity or legal validity beyond these checks.
+
+--- 
+
+## Outputs
+
+Each completed passport OCR validation produces:
+
+- A structured OCR result (extracted fields and validation status)
+- A verification outcome indicating success or failure of extraction
+- An audit pack containing:
+  - a summary report (PDF),
+  - visual evidence of the submitted document,
+  - verification metadata, and
+  integrity hashes.
+  
+---
+
+## Audit pack contents
+
+The audit pack for passport OCR validation includes:
+
+- Verification summary and reference ID
+- Timestamp of processing (UTC)
+- Extracted passport fields
+- Validation results
+- Visual capture of the submitted document
+- Cryptographic hashes (SHA-256) for key artefacts
+
+The audit pack represents a point-in-time record of what was submitted and extracted.
+
+---
+
+## Integrity and immutability
+
+Integrity controls are applied once OCR processing is complete:
+
+- Artefacts are generated once per verification
+- Hashes are calculated immediately after generation
+- Records are treated as immutable
+
+If a document is resubmitted, a new verification and audit pack is created
+
+---
+
+## What is intentionally not included
+
+Passport OCR validation does not include:
+
+- Biometric matching or liveness checks
+- Cross-checking against government databases
+- Determinations of right to work or legal status
+- Reconstructed or enhanced document images
+
+QuietLayer records what was submitted and extracted — nothing more.
+
+---
+
+## Data handling
+
+Passport images and extracted data are handled in accordance with QuietLayer’s data handling and integrity principles:
+
+- Data minimisation
+- Purpose limitation
+- Restricted access
+- Configurable retention
+
+Details are covered in the Data Handling & Integrity documentation.
+
+---
+
+## Responsibility and scope
+
+Passport OCR validation supports identity verification workflows but does not replace employer judgment or legal obligations.
+
+Final decisions about suitability, compliance, or employment remain the responsibility of the organisation performing the verification.
+
+---
+
+## Summary
+
+QuietLayer’s passport OCR validation service provides:
+
+- Consistent extraction of passport data,
+- Clear validation boundaries,
+- Auditable evidence of what was submitted, and
+- durable records suitable for review.
+
+It is designed to reduce manual effort while preserving traceability and trust.

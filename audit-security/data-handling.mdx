@@ -1,0 +1,138 @@
+---
+title: "Data handling & integrity"
+---
+
+This page explains how QuietLayer handles verification data and how integrity is maintained throughout the verification lifecycle.
+
+The goal is transparency: to make it clear what data is handled, why it is handled, and how it is protected against loss or unauthorised modification.
+
+---
+
+### Design principles
+
+QuietLayer’s data handling is guided by a small set of principles:
+
+- **Data minimisation** — only data required to perform and evidence a verification is processed
+- **Purpose limitation** — data is used solely to support verification and audit
+- **Point-in-time accuracy** — evidence reflects exactly what was available when the check was performed
+- **Integrity over volume** — fewer artefacts, captured correctly, are preferable to exhaustive data collection
+
+These principles shape both the technical implementation and the audit outputs.
+
+---
+
+### What data is processed
+
+For Right to Work share code verification, QuietLayer processes:
+
+- Share code provided by the employer
+- Date of birth provided by the employer
+- Verification result returned by the GOV.UK service
+- Supporting evidence displayed at the time of the check
+- Timestamps and system-generated identifiers
+
+QuietLayer does not infer, enrich, or extrapolate personal data beyond what is required to complete the verification.
+
+---
+
+### What data is stored
+
+QuietLayer stores data necessary to support audit and review, including:
+
+- Verification outcome and expiry date (where applicable)
+- Audit pack artefacts (PDF, visual evidence, metadata)
+- Cryptographic hashes associated with those artefacts
+- Organisational and verification reference identifiers
+
+Stored data is scoped to the organisation that performed the verification.
+
+---
+
+### What data is not stored
+
+To reduce risk and avoid unnecessary data retention, QuietLayer does not store:
+
+- Browser session data or cookies
+- Raw HTML or DOM content
+- Client-side scripts or third-party assets
+- Credentials for external services
+- Reconstructed or replayable verification sessions
+
+QuietLayer avoids storing data that cannot be meaningfully reviewed or relied upon during an audit.
+
+--- 
+
+### Integrity controls
+
+Integrity controls are applied at the point a verification is completed.
+
+#### Hashing
+
+- Cryptographic hashes (SHA-256) are generated for key artefacts, including audit reports and visual evidence
+- Hashes are calculated immediately after artefact generation
+- Hash values are stored alongside verification metadata
+
+These hashes allow detection of accidental corruption or unauthorised modification.
+
+---
+
+### Immutability model
+
+Once a verification is completed:
+
+- Audit artefacts are not edited or regenerated
+- Stored hashes are not recalculated
+- The verification record is treated as immutable
+
+If a new check is required, it results in a new verification and a new audit pack, rather than modification of an existing one.
+
+This ensures that each record represents a distinct, point-in-time event.
+
+---
+
+### Access controls
+
+Access to verification data and audit packs is restricted to authorised users and systems associated with the relevant organisation.
+
+QuietLayer enforces separation between organisations and does not allow cross-access to verification records.
+
+---
+
+### Retention and deletion
+
+Retention periods are configurable at the organisational level and can be aligned with internal compliance or legal requirements.
+
+Data is retained only for as long as it is required to support verification evidence and audit obligations.
+
+---
+
+### Use of data
+
+QuietLayer uses verification data solely to:
+
+- perform requested verifications, and
+- generate and retain audit evidence for those verifications.
+
+Verification data is not reused for unrelated purposes and is not sold or shared outside the verification context.
+
+---
+
+### Responsibility and scope
+
+QuietLayer provides tooling to support compliant processes and auditable records.
+
+It does not:
+
+- make hiring decisions,
+- provide legal advice, or
+- assume employer responsibility for compliance outcomes.
+
+Responsibility for compliance decisions remains with the organisation performing the verification.
+
+---
+
+### Summary
+
+QuietLayer’s data handling and integrity model is intentionally conservative.
+
+By minimising data, applying integrity controls at the moment of verification, and treating audit artefacts as immutable, QuietLayer provides evidence that can be reviewed and relied upon without requiring reconstruction or interpretation.

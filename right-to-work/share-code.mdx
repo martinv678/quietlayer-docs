@@ -1,0 +1,151 @@
+---
+title: 'Share Code Verification'
+description: 'How RTW Share Code verification works'
+---
+
+## Purpose
+
+QuietLayer’s Right to Work (RTW) share code verification service automates the process of checking an individual’s right to work in the UK using the Home Office share code system.
+
+The service is designed to:
+- reduce manual effort,
+- standardise evidence capture, and
+- produce inspection-ready audit packs that can be relied upon during audits or reviews.
+
+Each verification represents a **single, point-in-time check**.
+
+---
+
+## When RTW share code verification is used
+
+RTW share code verification is used when:
+
+- an individual provides a Home Office share code,
+- an employer is required to confirm right to work before employment, and
+- durable evidence of the check must be retained.
+
+QuietLayer does not generate share codes.  
+It verifies share codes provided by the employer or worker.
+
+---
+
+## Inputs
+
+To perform an RTW share code verification, QuietLayer requires:
+
+- Share code  
+- Date of birth  
+- Organisational context (the employer performing the check)
+
+No additional personal information is required to run the verification.
+
+---
+
+## Verification process
+
+For each RTW share code verification, QuietLayer performs the following steps:
+
+1. Receives the share code and date of birth  
+2. Retrieves the RTW result from the GOV.UK service  
+3. Validates and parses the returned result  
+4. Captures visual and structured evidence at the time of the check  
+5. Records verification metadata and timestamps  
+6. Generates an audit pack  
+
+The process is designed to reflect exactly what was returned at the time of verification.
+
+---
+
+## Verification outcome
+
+Each verification results in a clear outcome, including:
+
+- Right to work status  
+- Expiry date of permission (where applicable)  
+- Verification timestamp (UTC)  
+- QuietLayer verification reference ID  
+
+QuietLayer records the outcome but does not make hiring decisions.
+
+---
+
+## Audit pack generation
+
+An audit pack is generated for every completed RTW share code verification.
+
+The audit pack includes:
+
+- A structured audit report (PDF)  
+- Visual evidence of the GOV.UK result page  
+- Verification metadata and identifiers  
+- Cryptographic integrity hashes (SHA-256)  
+
+The audit pack represents a **durable snapshot** of the verification at the time it was performed.
+
+Further detail is available in the Audit Pack Specification.
+
+---
+
+## Integrity and immutability
+
+Integrity controls are applied once the verification is completed:
+
+- Audit artefacts are generated once per verification  
+- Cryptographic hashes are calculated immediately  
+- Records are treated as immutable  
+
+If a new check is required, a new verification and audit pack must be created.  
+Existing records are not modified.
+
+---
+
+## What this service does not do
+
+RTW share code verification does **not**:
+
+- generate or manage share codes  
+- make employment or hiring decisions  
+- provide legal advice  
+- assess suitability beyond the returned RTW status  
+
+QuietLayer supports compliant processes by providing accurate evidence, not judgement.
+
+---
+
+## Data handling
+
+Data used during RTW share code verification is handled in line with QuietLayer’s data handling and integrity principles:
+
+- data minimisation,  
+- purpose limitation, and  
+- restricted access.
+
+Details are covered in the Data Handling & Integrity documentation.
+
+---
+
+## Employer responsibility
+
+QuietLayer follows published Home Office Right to Work guidance and is designed to support compliant workflows.
+
+Final responsibility for right to work decisions and compliance outcomes remains with the employer performing the verification.
+
+---
+
+## Summary
+
+QuietLayer’s RTW share code verification service provides:
+
+- automated verification against the GOV.UK service,  
+- consistent evidence capture, and  
+- audit-ready records suitable for inspection.
+
+Each verification produces a clear outcome and a defensible audit trail.
+
+---
+
+## Where to go next
+
+- Review the Audit Pack Specification  
+- Understand Data Handling & Integrity  
+- Run your first RTW verification via the API

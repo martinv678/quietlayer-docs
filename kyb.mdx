@@ -1,0 +1,166 @@
+---
+title: "KYB Verification"
+---
+
+# 
+
+## Purpose
+
+QuietLayer’s KYB (Know Your Business) verification service provides a structured way to collect, validate, and evidence information about UK businesses.
+
+The service is designed to:
+- support business due diligence,
+- reduce manual checks against public registers, and
+- produce inspection-ready audit packs that document what was verified and when.
+
+Each KYB verification represents a **single, point-in-time assessment** based on the data available at the time of the check.
+
+---
+
+## When KYB verification is used
+
+KYB verification is typically used when:
+
+- onboarding a business customer or partner,
+- meeting regulatory or internal due diligence requirements,
+- validating company details before entering a commercial relationship, or
+- maintaining auditable records of business checks.
+
+QuietLayer supports KYB as an evidence and audit layer, not as a legal or regulatory authority.
+
+---
+
+## Inputs
+
+To perform a KYB verification, QuietLayer requires:
+
+- Company identifier (e.g. Companies House number)
+- Jurisdiction (currently UK)
+- Organisational context (the organisation performing the verification)
+
+No manual document uploads are required to initiate a standard KYB check.
+
+---
+
+## Verification process
+
+For each KYB verification, QuietLayer performs the following steps:
+
+1. Receives the company identifier  
+2. Retrieves company data from authoritative public sources (e.g. Companies House)  
+3. Validates and normalises returned data  
+4. Records the retrieved information and verification timestamps  
+5. Generates an audit pack documenting the verification  
+
+The process captures **what was returned at the time of the check**, without enrichment or inference.
+
+---
+
+## Data retrieved
+
+Depending on availability, KYB verification may include:
+
+- Company name and registration number  
+- Registered address  
+- Company status (e.g. active, dissolved)  
+- Incorporation date  
+- Officers and directors  
+- Persons with Significant Control (PSC), where available  
+
+Returned data is recorded as received from the source.
+
+---
+
+## Verification outcome
+
+Each KYB verification produces a clear outcome, including:
+
+- Company identity details  
+- Company status at the time of verification  
+- Verification timestamp (UTC)  
+- QuietLayer verification reference ID  
+
+QuietLayer records factual data but does not make risk or suitability determinations.
+
+---
+
+## Audit pack generation
+
+An audit pack is generated for every completed KYB verification.
+
+The audit pack includes:
+
+- A structured audit report (PDF)  
+- Retrieved company data  
+- Verification metadata and identifiers  
+- Cryptographic integrity hashes (SHA-256)  
+
+The audit pack represents a **durable snapshot** of the business information as it existed at the time of verification.
+
+Further detail is available in the Audit Pack Specification.
+
+---
+
+## Integrity and immutability
+
+Integrity controls are applied once the KYB verification is completed:
+
+- Audit artefacts are generated once per verification  
+- Cryptographic hashes are calculated immediately  
+- Records are treated as immutable  
+
+If a new KYB check is required, a new verification and audit pack must be created.  
+Existing records are not modified or updated.
+
+---
+
+## What this service does not do
+
+KYB verification does **not**:
+
+- provide credit scoring or financial risk assessment  
+- assert legal standing beyond returned public data  
+- monitor companies continuously  
+- replace internal compliance or legal review  
+
+QuietLayer provides evidence, not judgement.
+
+---
+
+## Data handling
+
+Data used during KYB verification is handled in accordance with QuietLayer’s data handling and integrity principles:
+
+- data minimisation,  
+- purpose limitation, and  
+- restricted access.
+
+Details are covered in the Data Handling & Integrity documentation.
+
+---
+
+## Responsibility and scope
+
+QuietLayer supports KYB workflows by providing structured, auditable evidence of business checks.
+
+Final responsibility for due diligence decisions and risk assessments remains with the organisation performing the verification.
+
+---
+
+## Summary
+
+QuietLayer’s KYB verification service provides:
+
+- automated retrieval of business information,  
+- consistent evidence capture, and  
+- audit-ready records suitable for review and inspection.
+
+Each verification produces a clear, point-in-time record of what was checked and what was returned.
+
+---
+
+## Where to go next
+
+- Review the Audit Pack Specification  
+- Understand Data Handling & Integrity  
+- Combine KYB with other verification flows via the API
